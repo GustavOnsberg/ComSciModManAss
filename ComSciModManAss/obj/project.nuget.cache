@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wep1v5gGLMNLCqyuNt2sFRVNwkWvHDaWQcF0zo2c9kkNbS79Ec5dPUbL0K2jM8lf6D2jK9ran+lZvE65DcJJbQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gusta\\RiderProjects\\ComSciModManAss\\ComSciModManAss\\ComSciModManAss.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gusta\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
