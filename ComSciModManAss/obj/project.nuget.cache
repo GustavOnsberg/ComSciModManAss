@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "wep1v5gGLMNLCqyuNt2sFRVNwkWvHDaWQcF0zo2c9kkNbS79Ec5dPUbL0K2jM8lf6D2jK9ran+lZvE65DcJJbQ==",
+  "dgSpecHash": "9Bn9/ULLZgUl++C68lnLJY/b+RVK5qNOmPATOLPyeZV3xs+NKaaH1jtJS9Yhb9npMPhSDCyK5Zxigy0CVEgj5A==",
   "success": true,
   "projectFilePath": "C:\\Users\\gusta\\RiderProjects\\ComSciModManAss\\ComSciModManAss\\ComSciModManAss.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gusta\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512"
+    "C:\\Users\\gusta\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\fslexyacc\\10.0.0\\fslexyacc.10.0.0.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\fslexyacc.runtime\\10.0.0\\fslexyacc.runtime.10.0.0.nupkg.sha512"
   ],
   "logs": []
 }

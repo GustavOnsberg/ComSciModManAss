@@ -17,5 +17,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\gusta\.nuget\packages\fsharp.core\5.0.0</PkgFSharp_Core>
+    <PkgFsLexYacc_Runtime Condition=" '$(PkgFsLexYacc_Runtime)' == '' ">C:\Users\gusta\.nuget\packages\fslexyacc.runtime\10.0.0</PkgFsLexYacc_Runtime>
+    <PkgFsLexYacc Condition=" '$(PkgFsLexYacc)' == '' ">C:\Users\gusta\.nuget\packages\fslexyacc\10.0.0</PkgFsLexYacc>
   </PropertyGroup>
 </Project>

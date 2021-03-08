@@ -6,7 +6,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Program.fs"/>
+        <Compile Include="Program.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FsLexYacc" Version="10.0.0" />
+      <PackageReference Include="FsLexYacc.Runtime" Version="10.0.0" />
     </ItemGroup>
 
 </Project>

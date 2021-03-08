@@ -1,0 +1,45 @@
+{
+module CalculatorLexer
+open FSharp.Text.Lexing
+open System
+
+open ComSciModManAssParser
+
+System.Globalization.CultureInfo.CurrentCulture <- new System.Globalization.CultureInfo("en-US")
+}
+
+
+let digit       = ['0'-'9']
+let num         = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
+let boo         = ("true"|"false")?
+let whitespace  = [' ' '\t']
+let newline     = "\n\r" | '\n' | '\r'
+
+
+rule tokenize = parse
+
+| whitespace    { tokenize lexbuf }
+| newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
+
+| num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
+| '*'           { TIMES }
+| '/'           { DIV }
+| '+'           { PLUS }
+| '-'           { MINUS }
+| '^'           { POW }
+| '('           { LPAR }
+| ')'           { RPAR }
+| eof           { EOF }
+
+| boo           { BOO(Boolean.Parse(LexBuffer<_>.LexemeString lexbuf)) }
+| "&&"          { AND }
+| '&'           { AND }
+| "||"          { OR }
+| '|'           { OR }
+| '!'           { NOT }
+| "=="          { EQUAL }
+| "!="          { NOTEQUAL }
+| '>'           { GT }
+| "=>"          { GTE }
+| '<'           { LT }
+| "=<"          { LTE }
