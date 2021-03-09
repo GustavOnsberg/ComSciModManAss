@@ -1,5 +1,5 @@
 {
-module CalculatorLexer
+module ComSciModManAssLexer
 open FSharp.Text.Lexing
 open System
 

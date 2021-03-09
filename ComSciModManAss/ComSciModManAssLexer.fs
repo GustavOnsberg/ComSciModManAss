@@ -1,6 +1,6 @@
 # 1 "ComSciModManAssLexer.fsl"
  
-module CalculatorLexer
+module ComSciModManAssLexer
 open FSharp.Text.Lexing
 open System
 
@@ -111,107 +111,107 @@ and tokenize  lexbuf =
 # 111 "ComSciModManAssLexer.fs"
           )
   | 2 -> ( 
-# 24 "ComSciModManAssLexer.fsl"
+# 23 "ComSciModManAssLexer.fsl"
                                  NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) 
 # 116 "ComSciModManAssLexer.fs"
           )
   | 3 -> ( 
-# 25 "ComSciModManAssLexer.fsl"
+# 24 "ComSciModManAssLexer.fsl"
                                  TIMES 
 # 121 "ComSciModManAssLexer.fs"
           )
   | 4 -> ( 
-# 26 "ComSciModManAssLexer.fsl"
+# 25 "ComSciModManAssLexer.fsl"
                                  DIV 
 # 126 "ComSciModManAssLexer.fs"
           )
   | 5 -> ( 
-# 27 "ComSciModManAssLexer.fsl"
+# 26 "ComSciModManAssLexer.fsl"
                                  PLUS 
 # 131 "ComSciModManAssLexer.fs"
           )
   | 6 -> ( 
-# 28 "ComSciModManAssLexer.fsl"
+# 27 "ComSciModManAssLexer.fsl"
                                  MINUS 
 # 136 "ComSciModManAssLexer.fs"
           )
   | 7 -> ( 
-# 29 "ComSciModManAssLexer.fsl"
+# 28 "ComSciModManAssLexer.fsl"
                                  POW 
 # 141 "ComSciModManAssLexer.fs"
           )
   | 8 -> ( 
-# 30 "ComSciModManAssLexer.fsl"
+# 29 "ComSciModManAssLexer.fsl"
                                  LPAR 
 # 146 "ComSciModManAssLexer.fs"
           )
   | 9 -> ( 
-# 31 "ComSciModManAssLexer.fsl"
+# 30 "ComSciModManAssLexer.fsl"
                                  RPAR 
 # 151 "ComSciModManAssLexer.fs"
           )
   | 10 -> ( 
-# 32 "ComSciModManAssLexer.fsl"
+# 31 "ComSciModManAssLexer.fsl"
                                  EOF 
 # 156 "ComSciModManAssLexer.fs"
           )
   | 11 -> ( 
-# 34 "ComSciModManAssLexer.fsl"
+# 33 "ComSciModManAssLexer.fsl"
                                  BOO(Boolean.Parse(LexBuffer<_>.LexemeString lexbuf)) 
 # 161 "ComSciModManAssLexer.fs"
           )
   | 12 -> ( 
-# 35 "ComSciModManAssLexer.fsl"
+# 34 "ComSciModManAssLexer.fsl"
                                  AND 
 # 166 "ComSciModManAssLexer.fs"
           )
   | 13 -> ( 
-# 36 "ComSciModManAssLexer.fsl"
+# 35 "ComSciModManAssLexer.fsl"
                                  AND 
 # 171 "ComSciModManAssLexer.fs"
           )
   | 14 -> ( 
-# 37 "ComSciModManAssLexer.fsl"
+# 36 "ComSciModManAssLexer.fsl"
                                  OR 
 # 176 "ComSciModManAssLexer.fs"
           )
   | 15 -> ( 
-# 38 "ComSciModManAssLexer.fsl"
+# 37 "ComSciModManAssLexer.fsl"
                                  OR 
 # 181 "ComSciModManAssLexer.fs"
           )
   | 16 -> ( 
-# 39 "ComSciModManAssLexer.fsl"
+# 38 "ComSciModManAssLexer.fsl"
                                  NOT 
 # 186 "ComSciModManAssLexer.fs"
           )
   | 17 -> ( 
-# 40 "ComSciModManAssLexer.fsl"
+# 39 "ComSciModManAssLexer.fsl"
                                  EQUAL 
 # 191 "ComSciModManAssLexer.fs"
           )
   | 18 -> ( 
-# 41 "ComSciModManAssLexer.fsl"
+# 40 "ComSciModManAssLexer.fsl"
                                  NOTEQUAL 
 # 196 "ComSciModManAssLexer.fs"
           )
   | 19 -> ( 
-# 42 "ComSciModManAssLexer.fsl"
+# 41 "ComSciModManAssLexer.fsl"
                                  GT 
 # 201 "ComSciModManAssLexer.fs"
           )
   | 20 -> ( 
-# 43 "ComSciModManAssLexer.fsl"
+# 42 "ComSciModManAssLexer.fsl"
                                  GTE 
 # 206 "ComSciModManAssLexer.fs"
           )
   | 21 -> ( 
-# 44 "ComSciModManAssLexer.fsl"
+# 43 "ComSciModManAssLexer.fsl"
                                  LT 
 # 211 "ComSciModManAssLexer.fs"
           )
   | 22 -> ( 
-# 45 "ComSciModManAssLexer.fsl"
+# 44 "ComSciModManAssLexer.fsl"
                                  LTE 
 # 216 "ComSciModManAssLexer.fs"
           )

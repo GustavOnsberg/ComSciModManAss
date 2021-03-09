@@ -1,5 +1,5 @@
 // This file implements a module where we define a data type "exA"
-// to store represent arithmetic exAessions
+// to store represent arithmetic expression
 module ComSciModManAssTypesAST
 
 type exA =
@@ -24,7 +24,6 @@ type exB =
   | GTE of (exA * exA)
   | LT of (exA * exA)
   | LTE of (exA * exA)
-  | exB of (exB)
 
 type ex =
   |  NumEx of exA

@@ -1,7 +1,7 @@
 // This script implements our interactive calculator
 
 // We need to import a couple of modules, including the generated lexer and parser
-#r "FsLexYacc.Runtime.10.0.0/lib/net46/FsLexYacc.Runtime.dll"
+#r "C:/Users/frede/.nuget/packages/fslexyacc.runtime/10.0.0/lib/net46/FsLexYacc.Runtime.dll"
 open FSharp.Text.Lexing
 open System
 #load "ComSciModManAssTypesAST.fs"
@@ -13,16 +13,42 @@ open ComSciModManAssLexer
 
 // We define the evaluation function recursively, by induction on the structure
 // of arithmetic expressions (AST of type expr)
-let rec eval e =
+let rec evalA e =
   match e with
     | Num(x) -> x
-    | TimesExpr(x,y) -> eval(x) * eval (y)
-    | DivExpr(x,y) -> eval(x) / eval (y)
-    | PlusExpr(x,y) -> eval(x) + eval (y)
-    | MinusExpr(x,y) -> eval(x) - eval (y)
-    | PowExpr(x,y) -> eval(x) ** eval (y)
-    | UPlusExpr(x) -> eval(x)
-    | UMinusExpr(x) -> - eval(x)
+    | TimesExpr(x,y) -> evalA(x) * evalA (y)
+    | DivExpr(x,y) -> evalA(x) / evalA (y)
+    | PlusExpr(x,y) -> evalA(x) + evalA (y)
+    | MinusExpr(x,y) -> evalA(x) - evalA (y)
+    | PowExpr(x,y) -> evalA(x) ** evalA (y)
+    | UPlusExpr(x) -> evalA(x)
+    | UMinusExpr(x) -> - evalA(x)
+let rec evalB e =
+    match e with
+    | Boo(x) -> x
+    | And(x,y) -> evalB(x) && evalB(y)
+    | Or(x,y) -> evalB(x) || evalB(y)
+    | Not(x) -> not(evalB(x))
+    | Equal(x,y) -> evalA(x) = evalA(y)
+    | NotEqual(x,y) -> evalA(x) <> evalA(y)
+    | GT(x,y) -> evalA(x) > evalA(y)
+    | GTE(x,y) -> evalA(x) > evalA(y)
+    | LT(x,y) -> evalA(x) > evalA(y)
+    | LTE(x,y) -> evalA(x) > evalA(y)
+    
+let rec printEval e =
+    match e with
+    | TimesExpr(x,y) -> "(" + printEval(x) + "TIMES" + printEval(y) + ")"
+    | DivExpr(x,y) -> "(" + printEval(x) + "DIV" + printEval(y) + ")"
+    | PlusExpr(x,y) -> "(" + printEval(x) + "PLUS" + printEval (y) + ")"
+    | MinusExpr(x,y) -> "(" + printEval(x) +  "MINUS" + printEval (y) + ")"
+    | PowExpr(x,y) -> "(" + printEval(x) + "POW" + printEval (y) + ")"
+    | UPlusExpr(x) -> "(" + printEval(x) + ")"
+    | UMinusExpr(x) -> "(" + printEval(x) + ")"
+
+
+
+let rec 
 
 // We
 let parse input =
@@ -43,7 +69,7 @@ let rec compute n =
         // We parse the input string
         let e = parse (Console.ReadLine())
         // and print the result of evaluating it
-        printfn "Result: %f" (eval(e))
+        printfn "Result: %f" (evalA(e))
         compute n
         with err -> compute (n-1)
 

@@ -16,12 +16,12 @@ open ComSciModManAssTypesAST
 
 %start start
 
-%type <expr> start
-%type <expr> expression
+%type <ex> start
+%type <ex> ex
 
 %%
 
-start: expression EOF             { $1 }
+start: ex EOF             { $1 }
 
 ex:
   | exA {NumEx($1)}
