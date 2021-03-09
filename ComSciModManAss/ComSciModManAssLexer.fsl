@@ -14,13 +14,12 @@ let num         = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
 let boo         = ("true"|"false")?
 let whitespace  = [' ' '\t']
 let newline     = "\n\r" | '\n' | '\r'
-
+let x        = ['a'-'z' 'A'-'Z']
 
 rule tokenize = parse
 
 | whitespace    { tokenize lexbuf }
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
-
 | num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
 | '*'           { TIMES }
 | '/'           { DIV }

@@ -1,27 +1,32 @@
-// This file implements a module where we define a data type "expr"
-// to store represent arithmetic expressions
+// This file implements a module where we define a data type "exA"
+// to store represent arithmetic exAessions
 module ComSciModManAssTypesAST
 
-type expr =
+type exA =
   | Num of float
-  | TimesExpr of (expr * expr)
-  | DivExpr of (expr * expr)
-  | PlusExpr of (expr * expr)
-  | MinusExpr of (expr * expr)
-  | PowExpr of (expr * expr)
-  | UPlusExpr of (expr)
-  | UMinusExpr of (expr)
+  | TimesExpr of (exA * exA)
+  | DivExpr of (exA * exA)
+  | PlusExpr of (exA * exA)
+  | MinusExpr of (exA * exA)
+  | PowExpr of (exA * exA)
+  | UPlusExpr of (exA)
+  | UMinusExpr of (exA)
 
 
-type b = 
-  | Bool of boolean
-  | And of (b * b)
-  | Or of (b * b)
-  | Not of (b)
-  | Equal of (expr * expr)
-  | NotEqual of (expr * expr)
-  | GT of (expr * expr)
-  | GTE of (expr * expr)
-  | LT of (expr * expr)
-  | LTE of (expr * expr)
-  | B of (b)
+type exB = 
+  | Boo of bool
+  | And of (exB * exB)
+  | Or of (exB * exB)
+  | Not of (exB)
+  | Equal of (exA * exA)
+  | NotEqual of (exA * exA)
+  | GT of (exA * exA)
+  | GTE of (exA * exA)
+  | LT of (exA * exA)
+  | LTE of (exA * exA)
+  | exB of (exB)
+
+type ex =
+  |  NumEx of exA
+  |  BooEx of exB
+  
