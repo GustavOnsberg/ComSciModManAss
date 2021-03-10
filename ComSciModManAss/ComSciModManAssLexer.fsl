@@ -8,7 +8,7 @@ open ComSciModManAssParser
 System.Globalization.CultureInfo.CurrentCulture <- new System.Globalization.CultureInfo("en-US")
 }
 
-
+// The regexes:
 let digit       = ['0'-'9']
 let num         = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
 let boo         = ("true"|"false")?
@@ -19,10 +19,13 @@ let array_name  = x(x|digit)*
 
 rule tokenize = parse
 
+// The characters
+
 | whitespace    { tokenize lexbuf }
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
 | num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
 | array_name    { let str = LexBuffer<_>.LexemeString lexbuf in VAR(str) }
+| boo           { BOO(Boolean.Parse(LexBuffer<_>.LexemeString lexbuf)) }
 | '*'           { TIMES }
 | '/'           { DIV }
 | '+'           { PLUS }
@@ -30,9 +33,6 @@ rule tokenize = parse
 | '^'           { POW }
 | '('           { LPAR }
 | ')'           { RPAR }
-| eof           { EOF }
-
-| boo           { BOO(Boolean.Parse(LexBuffer<_>.LexemeString lexbuf)) }
 | "&&"          { AND }
 | '&'           { BITAND }
 | "||"          { OR }
@@ -44,15 +44,15 @@ rule tokenize = parse
 | ">="          { GTE }
 | '<'           { LT }
 | "<="          { LTE }
-
+| ";"           { SEQUENCE }
+| '['           { LBRAC }
+| ']'           { RBRAC }
+| ":="          { ASSIGN }
+| "->"          { LAMBDA }
+| "[]"          { ELSE }
 | "if"          { IF }
 | "fi"          { FI }
 | "do"          { DO }
 | "od"          { OD }
-| ";"           { SEQUENCE }
-| '['           { LBRAC }
-| ']'           { RBRAC }
 | "skip"        { SKIP }
-| ":="          { ASSIGN }
-| "->"          { LAMBDA }
-| "[]"          { ELSE }
+| eof           { EOF }

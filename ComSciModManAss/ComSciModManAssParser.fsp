@@ -2,11 +2,13 @@
 open ComSciModManAssTypesAST
 %}
 
+// Tokens
 %token <float> NUM
 %token <bool> BOO
 %token <string> VAR
 %token TIMES DIV PLUS MINUS POW LPAR RPAR EOF AND BITAND OR BITOR NOT EQUAL GT LT GTE LTE NOTEQUAL ASSIGN LAMBDA LBRAC RBRAC DO OD IF FI SEQUENCE ELSE SKIP
 
+// Precedens
 %left PLUS MINUS
 %left TIMES DIV
 %right POW
@@ -14,7 +16,7 @@ open ComSciModManAssTypesAST
 
 %left OR BITOR
 %left AND BITAND
-%left EQUAL GT GTE LTE NOTEQUAL
+%left EQUAL GT GTE LTE NOTEQUAL LT
 %left NOT
 
 %start start
@@ -26,12 +28,14 @@ open ComSciModManAssTypesAST
 
 start: ex EOF                               { $1 }
 
+// Ground expressions
 ex:
   | exAth                                   { NumEx($1) }
   | exBool                                  { BooEx($1) }
   | exCom                                   { CommandEx($1) }
-  | exGuardCom                              { GcommandEx($1) }
-    
+  | exGuardCom                              { GCommandEx($1) }
+
+// Arithmetic Expression
 exAth:
   | exAth TIMES exAth                       { TimesExpr($1,$3) }
   | exAth DIV exAth                         { DivExpr($1,$3) }
@@ -45,6 +49,7 @@ exAth:
   | VAR                                     { VarX($1) }
   | VAR LBRAC exAth RBRAC                   { Array($1, $3) }
 
+// Boolean Expression
 exBool:
     | exBool AND exBool                     { And($1, $3) }
     | exBool BITAND exBool                  { BitAnd($1, $3) }
@@ -60,6 +65,7 @@ exBool:
     | LPAR exBool RPAR                      { $2 }
     | BOO                                   { Boo($1) }
 
+// Command expressions
 exCom:
     | VAR ASSIGN exAth                     { Assign($1, $3) }
     | VAR LBRAC exAth RBRAC ASSIGN exAth   { AssignArray($1, $3, $6) }
@@ -68,6 +74,7 @@ exCom:
     | IF exGuardCom FI                     { IfState($2) }
     | DO exGuardCom OD                     { DoState($2) }
 
+// Guarded command expressions
 exGuardCom:
     | exBool LAMBDA exCom                  { Lambda($1, $3) }
     | exGuardCom ELSE exGuardCom           { Else($1, $3) }
