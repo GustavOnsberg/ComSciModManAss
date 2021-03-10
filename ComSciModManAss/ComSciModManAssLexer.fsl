@@ -15,12 +15,14 @@ let boo         = ("true"|"false")?
 let whitespace  = [' ' '\t']
 let newline     = "\n\r" | '\n' | '\r'
 let x           = ['a'-'z' 'A'-'Z']
+let array_name  = x(x|digit)*
 
 rule tokenize = parse
 
 | whitespace    { tokenize lexbuf }
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
 | num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
+| array_name    { let str = LexBuffer<_>.LexemeString lexbuf in VAR(str) }
 | '*'           { TIMES }
 | '/'           { DIV }
 | '+'           { PLUS }
@@ -32,13 +34,25 @@ rule tokenize = parse
 
 | boo           { BOO(Boolean.Parse(LexBuffer<_>.LexemeString lexbuf)) }
 | "&&"          { AND }
-| '&'           { AND }
+| '&'           { BITAND }
 | "||"          { OR }
-| '|'           { OR }
+| '|'           { BITOR }
 | '!'           { NOT }
 | "=="          { EQUAL }
 | "!="          { NOTEQUAL }
 | '>'           { GT }
-| "=>"          { GTE }
+| ">="          { GTE }
 | '<'           { LT }
-| "=<"          { LTE }
+| "<="          { LTE }
+
+| "if"          { IF }
+| "fi"          { FI }
+| "do"          { DO }
+| "od"          { OD }
+| ";"           { SEQUENCE }
+| '['           { LBRAC }
+| ']'           { RBRAC }
+| "skip"        { SKIP }
+| ":="          { ASSIGN }
+| "->"          { LAMBDA }
+| "[]"          { ELSE }

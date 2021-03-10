@@ -4,15 +4,18 @@ open ComSciModManAssTypesAST
 
 %token <float> NUM
 %token <bool> BOO
-%token TIMES DIV PLUS MINUS POW LPAR RPAR EOF AND OR NOT EQUAL GT LT GTE LTE NOTEQUAL
+%token <string> VAR
+%token TIMES DIV PLUS MINUS POW LPAR RPAR EOF AND BITAND OR BITOR NOT EQUAL GT LT GTE LTE NOTEQUAL ASSIGN LAMBDA LBRAC RBRAC DO OD IF FI SEQUENCE ELSE SKIP
 
 %left PLUS MINUS
 %left TIMES DIV
-%left OR
-%left AND
+%right POW
+%right SEQUENCE
+
+%left OR BITOR
+%left AND BITAND
 %left EQUAL GT GTE LTE NOTEQUAL
 %left NOT
-%right POW
 
 %start start
 
@@ -21,37 +24,52 @@ open ComSciModManAssTypesAST
 
 %%
 
-start: ex EOF             { $1 }
+start: ex EOF                               { $1 }
 
 ex:
-  | exA {NumEx($1)}
-  | exB {BooEx($1)}
+  | exAth                                   { NumEx($1) }
+  | exBool                                  { BooEx($1) }
+  | exCom                                   { CommandEx($1) }
+  | exGuardCom                              { GcommandEx($1) }
     
-    
+exAth:
+  | exAth TIMES exAth                       { TimesExpr($1,$3) }
+  | exAth DIV exAth                         { DivExpr($1,$3) }
+  | exAth PLUS exAth                        { PlusExpr($1,$3) }
+  | exAth MINUS exAth                       { MinusExpr($1,$3) }
+  | exAth POW exAth                         { PowExpr($1,$3) }
+  | PLUS exAth                              { UPlusExpr($2) }
+  | MINUS exAth                             { UMinusExpr($2) }
+  | NUM                                     { Num($1) }
+  | LPAR exAth RPAR                         { $2 }
+  | VAR                                     { VarX($1) }
+  | VAR LBRAC exAth RBRAC                   { Array($1, $3) }
 
-exA:
-  | exA TIMES exA               { TimesExpr($1,$3) }
-  | exA DIV exA                 { DivExpr($1,$3) }
-  | exA PLUS exA                { PlusExpr($1,$3) }
-  | exA MINUS exA               { MinusExpr($1,$3) }
-  | exA POW exA                 { PowExpr($1,$3) }
-  | PLUS exA                    { UPlusExpr($2) }
-  | MINUS exA                   { UMinusExpr($2) }
-  | NUM                         { Num($1) }
-  | LPAR exA RPAR               { $2 }
+exBool:
+    | exBool AND exBool                     { And($1, $3) }
+    | exBool BITAND exBool                  { BitAnd($1, $3) }
+    | exBool OR exBool                      { Or($1, $3) }
+    | exBool BITOR exBool                   { BitOr($1, $3) }
+    | NOT exBool                            { Not($2) }
+    | exAth EQUAL exAth                     { Equal($1, $3) }
+    | exAth NOTEQUAL exAth                  { NotEqual($1, $3) }
+    | exAth GT exAth                        { GT($1, $3) }
+    | exAth GTE exAth                       { GTE($1, $3) }
+    | exAth LT exAth                        { LT($1, $3) }
+    | exAth LTE exAth                       { LTE($1, $3) }
+    | LPAR exBool RPAR                      { $2 }
+    | BOO                                   { Boo($1) }
 
-exB:
-    | exB AND exB               { And($1, $3) }
-    | exB OR exB                { Or($1, $3) }
-    | NOT exB                   { Not($2) }
-    | exB EQUAL exB             { Equal($1, $3) }
-    | exB NOTEQUAL exB          { NotEqual($1, $3) }
-    | exB GT exB                { GT($1, $3) }
-    | exB GTE exB               { GTE($1, $3) }
-    | exB LT exB                { LT($1, $3) }
-    | exB LTE exB               { LTE($1, $3) }
-    | LPAR exB RPAR             { $2 }
-    | BOO                       { Boo($1) }
+exCom:
+    | VAR ASSIGN exAth                     { Assign($1, $3) }
+    | VAR LBRAC exAth RBRAC ASSIGN exAth   { AssignArray($1, $3, $6) }
+    | SKIP                                 { Skip }
+    | exCom SEQUENCE exCom                 { Sequence($1, $3) }
+    | IF exGuardCom FI                     { IfState($2) }
+    | DO exGuardCom OD                     { DoState($2) }
 
+exGuardCom:
+    | exBool LAMBDA exCom                  { Lambda($1, $3) }
+    | exGuardCom ELSE exGuardCom           { Else($1, $3) }
 
 %%
