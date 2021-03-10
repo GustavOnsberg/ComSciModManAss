@@ -14,7 +14,7 @@ let num         = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
 let boo         = ("true"|"false")?
 let whitespace  = [' ' '\t']
 let newline     = "\n\r" | '\n' | '\r'
-let x        = ['a'-'z' 'A'-'Z']
+let x           = ['a'-'z' 'A'-'Z']
 
 rule tokenize = parse
 

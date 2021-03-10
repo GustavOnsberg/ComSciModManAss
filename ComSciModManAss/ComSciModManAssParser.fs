@@ -350,7 +350,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 44 "ComSciModManAssParser.fsp"
-                                                       AndB(_1, _3) 
+                                                       And(_1, _3) 
                    )
 # 44 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -362,7 +362,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 45 "ComSciModManAssParser.fsp"
-                                                       OrB(_1, _3) 
+                                                       Or(_1, _3) 
                    )
 # 45 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -373,7 +373,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 46 "ComSciModManAssParser.fsp"
-                                                       NotB(_2) 
+                                                       Not(_2) 
                    )
 # 46 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -385,7 +385,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 47 "ComSciModManAssParser.fsp"
-                                                       EqualB(_1, _3) 
+                                                       Equal(_1, _3) 
                    )
 # 47 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -397,7 +397,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 48 "ComSciModManAssParser.fsp"
-                                                       NotEqualB(_1, _3) 
+                                                       NotEqual(_1, _3) 
                    )
 # 48 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -409,7 +409,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 49 "ComSciModManAssParser.fsp"
-                                                       GTB(_1, _3) 
+                                                       GT(_1, _3) 
                    )
 # 49 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -421,7 +421,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 50 "ComSciModManAssParser.fsp"
-                                                       GTB(_1, _3) 
+                                                       GTE(_1, _3) 
                    )
 # 50 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -433,7 +433,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 51 "ComSciModManAssParser.fsp"
-                                                       GTB(_1, _3) 
+                                                       LT(_1, _3) 
                    )
 # 51 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -445,7 +445,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 52 "ComSciModManAssParser.fsp"
-                                                       GTB(_1, _3) 
+                                                       LTE(_1, _3) 
                    )
 # 52 "ComSciModManAssParser.fsp"
                  : 'exB));
@@ -467,7 +467,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 54 "ComSciModManAssParser.fsp"
-                                                       BB(_1) 
+                                                       Boo(_1) 
                    )
 # 54 "ComSciModManAssParser.fsp"
                  : 'exB));

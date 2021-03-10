@@ -41,17 +41,17 @@ exA:
   | LPAR exA RPAR               { $2 }
 
 exB:
-    | exB AND exB               { AndB($1, $3) }
-    | exB OR exB                { OrB($1, $3) }
-    | NOT exB                   { NotB($2) }
-    | exB EQUAL exB             { EqualB($1, $3) }
-    | exB NOTEQUAL exB          { NotEqualB($1, $3) }
-    | exB GT exB                { GTB($1, $3) }
-    | exB GTE exB               { GTB($1, $3) }
-    | exB LT exB                { GTB($1, $3) }
-    | exB LTE exB               { GTB($1, $3) }
+    | exB AND exB               { And($1, $3) }
+    | exB OR exB                { Or($1, $3) }
+    | NOT exB                   { Not($2) }
+    | exB EQUAL exB             { Equal($1, $3) }
+    | exB NOTEQUAL exB          { NotEqual($1, $3) }
+    | exB GT exB                { GT($1, $3) }
+    | exB GTE exB               { GTE($1, $3) }
+    | exB LT exB                { LT($1, $3) }
+    | exB LTE exB               { LTE($1, $3) }
     | LPAR exB RPAR             { $2 }
-    | BOO                       { BB($1) }
+    | BOO                       { Boo($1) }
 
 
 %%
